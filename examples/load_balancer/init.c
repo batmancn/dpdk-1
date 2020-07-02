@@ -124,6 +124,9 @@ app_init_lpm_tables(void)
 			continue;
 		}
 
+		// 使用struct rte_lpm_config：
+		// http://doc.dpdk.org/guides/prog_guide/lpm_lib.html
+		// DIR-24-8算法
 		struct rte_lpm_config lpm_config;
 
 		lpm_config.max_rules = APP_MAX_LPM_RULES;
@@ -509,8 +512,11 @@ app_init_nics(void)
 void
 app_init(void)
 {
+	// 给config.c中的app.app_lcore_params.worker.worker_id赋值
 	app_assign_worker_ids();
+	// 给每个socket初始化local cache，并赋值给app.lcore_params[lcore].pool = app.pools[socket];
 	app_init_mbuf_pools();
+	// 初始化lpm表
 	app_init_lpm_tables();
 	app_init_rings_rx();
 	app_init_rings_tx();

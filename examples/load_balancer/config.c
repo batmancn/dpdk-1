@@ -40,6 +40,7 @@
 
 #include "main.h"
 
+// master进程，存储APP运行所需的所有变量
 struct app_params app;
 
 static const char usage[] =
