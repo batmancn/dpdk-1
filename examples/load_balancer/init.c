@@ -518,6 +518,7 @@ app_init(void)
 	app_init_mbuf_pools();
 	// 初始化lpm表
 	app_init_lpm_tables();
+	// 初始化rx
 	app_init_rings_rx();
 	app_init_rings_tx();
 	app_init_nics();
